@@ -1,0 +1,11 @@
+# Powershell Core and Dotnetcore2.0 for Raspbian
+sudo apt-get install curl libunwind8 gettext
+wget https://github.com/PowerShell/PowerShell/releases/download/v6.0.0-rc.2/powershell-6.0.0-rc.2-linux-arm32.tar.gz
+mkdir ~/powershell
+tar -xvf ./powershell-6.0.0-rc.2-linux-arm32.tar.gz -C ~/powershell
+~/powershell/pwsh
+install-module universaldashboard -scope currentuser
+Start-UDDashboard -Content { & '/home/pi/New-UDWeatherDashboard.ps1' -State 'Noord-Holland' -City 'Halfweg'} -Port 9292
+curl -sSL -o dotnet.tar.gz https://dotnetcli.blob.core.windows.net/dotnet/Runtime/release/2.0.0/dotnet-runtime-latest-linux-arm.tar.gz
+sudo mkdir -p /opt/dotnet && sudo tar zxf dotnet.tar.gz -C /opt/dotnet
+sudo ln -s /opt/dotnet/dotnet /usr/local/bin
